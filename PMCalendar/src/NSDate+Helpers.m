@@ -93,7 +93,13 @@
 		
 	return [formatter stringFromDate:self];
 }
-
++ (NSDate *) dateWithFormat:(NSString *)format andString:(NSString *)string
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    
+    return [formatter dateFromString:string];
+}
 - (NSInteger) daysSinceDate:(NSDate *) date
 {
     return round([self timeIntervalSinceDate:date] / (60 * 60 * 24));

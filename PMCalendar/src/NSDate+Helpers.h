@@ -71,6 +71,7 @@
  * i.e. "dd-MM-yyyy" will return "14-07-2012"
  */
 - (NSString *) dateStringWithFormat:(NSString *) format;
++ (NSDate *) dateWithFormat:(NSString *) format andString:(NSString *)string;
 
 /**
  * Checks if a given date is before or after the current (self) date.
