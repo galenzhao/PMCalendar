@@ -95,7 +95,11 @@ static PMThemeEngine* sharedInstance;
     {
         NSString *color = [colElement elementInThemeDictOfGenericType:PMThemeColorGenericType];
         NSNumber *pos = [colElement elementInThemeDictOfGenericType:PMThemePositionGenericType];
-        [gradientColorsArray addObject:(id)[PMThemeEngine colorFromString:color].CGColor];
+        id object = (id)[PMThemeEngine colorFromString:color].CGColor;
+        
+        if (object)
+            [gradientColorsArray addObject:object];
+        
         gradientLocations[i] = 1 - pos.floatValue;
         i++;
     }
@@ -109,7 +113,9 @@ static PMThemeEngine* sharedInstance;
                                 , CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y)
                                 , 0);
     CGGradientRelease(gradient);
-//    CGColorSpaceRelease(colorSpace);
+    
+    if (colorSpace)
+        CGColorSpaceRelease(colorSpace);
 }
 
 + (NSString *) keyNameForElementType: (PMThemeElementType) type
